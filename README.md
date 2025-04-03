@@ -1,3 +1,13 @@
+In this assignment you will apply the RL algorithms you learnt from the tutorials to a simulated robot car in a pybullet environment.
+
+You will be asked to (percentages are allocation of assignment marks):
+
+Train the robot to drive to the green goal marker which spawns at random locations (60%)
+Modify the epsilon-greedy function to incorporate prior knowledge (20%)
+Modify the reward function (10%)
+Add obstacles to the environment (10%)
+It is highly recommended to install pybullet and run your code locally since things will run much faster. It will also make editing the gym environment code easier.
+
 Part 1
 Train the robot to drive to the green goal marker. Use any of the RL algorithms you learnt in the tutorials.
 
@@ -38,7 +48,7 @@ frames.append(env.render())
 for i in range(200):
     action = env.action_space.sample()
     state, reward, done, _, info = env.step(action)
-    frames.append(env.render())  # if running locally not necessary unless you want to grab onboard camera image
+    frames.append(env.render())  # if running locally not necessary unless you want to grab onboard camera imagep
     if done:
         break
 
