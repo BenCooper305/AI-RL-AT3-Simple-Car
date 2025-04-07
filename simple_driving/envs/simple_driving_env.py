@@ -4,6 +4,7 @@ import math
 import pybullet as p
 from pybullet_utils import bullet_client as bc
 from simple_driving.resources.car import Car
+from simple_driving.resources.obstacle import Obstacle
 from simple_driving.resources.plane import Plane
 from simple_driving.resources.goal import Goal
 import matplotlib.pyplot as plt
@@ -16,7 +17,6 @@ class SimpleDrivingEnv(gym.Env):
     metadata = {'render.modes': ['human', 'fp_camera', 'tp_camera']}
 
     def __init__(self, isDiscrete=True, renders=False):
-        print("HELLLLLLOOOOOOOOOO WORLD!!!!!!!!!!!!!!!!!!!!")
         if (isDiscrete):
             self.action_space = gym.spaces.Discrete(9)
         else:
@@ -101,6 +101,8 @@ class SimpleDrivingEnv(gym.Env):
         Plane(self._p)
         self.car = Car(self._p)
         self._envStepCounter = 0
+
+        self.obstacle = Obstacle
 
         # Set the goal to a random target
         x = (self.np_random.uniform(5, 9) if self.np_random.integers(2) else

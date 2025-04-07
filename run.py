@@ -24,7 +24,7 @@ max_episode_length = 200    # maximum number of steps for episode roll out
 epsilon = 0.2               # control how often you explore random actions versus focusing on high value state and actions
 step_size = 0.1             # learning rate - controls how fast or slow to update Q-values for each iteration.
 
-
+#Modify the reward function (10%)
 def simulate(env, Q, max_episode_length, epsilon, episodes, episode):
     D = []
     state, _ = env.reset()                                                  
@@ -60,6 +60,7 @@ def q_learning(env, gamma, episodes, max_episode_length, epsilon, step_size):
             total_reward = 0
     return Q 
 
+#Modify the epsilon-greedy function to incorporate prior knowledge (20%)
 def epsilon_greedy(env, state, Q, epsilon, episodes, episode):
     EPS_START = 0.9
     EPS_END = 0.05
