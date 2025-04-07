@@ -16,6 +16,7 @@ class SimpleDrivingEnv(gym.Env):
     metadata = {'render.modes': ['human', 'fp_camera', 'tp_camera']}
 
     def __init__(self, isDiscrete=True, renders=False):
+        print("HELLLLLLOOOOOOOOOO WORLD!!!!!!!!!!!!!!!!!!!!")
         if (isDiscrete):
             self.action_space = gym.spaces.Discrete(9)
         else:
@@ -81,7 +82,7 @@ class SimpleDrivingEnv(gym.Env):
 
         # Done by reaching goal
         if dist_to_goal < 1.5 and not self.reached_goal:
-            #print("reached goal")
+            print("reached goal")
             self.done = True
             self.reached_goal = True
 
