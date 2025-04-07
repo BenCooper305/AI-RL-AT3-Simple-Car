@@ -1,6 +1,6 @@
 import gym
 import simple_driving
-# import pybullet_envs
+import pybullet_envs
 import pybullet as p
 import numpy as np
 import math
