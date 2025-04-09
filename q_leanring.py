@@ -12,17 +12,17 @@ import matplotlib.pyplot as plt
 
 alpha = 0.3
 gamma = 0.95
-num_episodes = 2000
+num_episodes = 10
 epsilon = 0.2
 
-Dubug = False
+Dubug = True
 
 START_EPS = 0.9
 MIN_EPS = 0.05
 EPS_DECAY = 0.995
 
-x_bins = np.linspace(-20, 20, 20)  # 5 bins for x-axis
-y_bins = np.linspace(-20, 20, 20)  # 5 bins for y-axis
+x_bins = np.linspace(-20, 20, 10)  # 5 bins for x-axis
+y_bins = np.linspace(-20, 20, 10)  # 5 bins for y-axis
 bins = [x_bins, y_bins]  # List of bins for each dimension
 
 max_steps = 60
@@ -44,9 +44,9 @@ def discretize_state(state):
     return tuple(np.digitize(state[i], bins[i]) - 1 for i in range(len(state)))   
 
 def select_action(env, state, Q, episode):
-    sample = np.random.uniform(0, 1)
-    eps_threshold = MIN_EPS + (START_EPS * (EPS_DECAY * episode))
-    if sample > eps_threshold:
+    eps_threshold = max(MIN_EPS, START_EPS * (EPS_DECAY ** episode))
+    if np.random.uniform(0, 1) > eps_threshold:
+        print(state)
         return np.argmax(Q[discretize_state(state)][:])
     else:
         return env.action_space.sample()
@@ -57,14 +57,15 @@ def train():
 
     for episode in range(num_episodes):
         state, _ = env.reset()
+        state = discretize_state(state)
 
         done = False
 
         for step in range(max_steps):
             action = select_action(env,state,q_table,episode)
             
-            next_state, reward,done, truncated, info = env.step(action)
-
+            next_state, reward,done, truncated, _ = env.step(action)
+            
 
             old_value = q_table[discretize_state(state)][action]
             
