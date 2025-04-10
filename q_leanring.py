@@ -110,8 +110,7 @@ def loadQTable(env):
         return q_table  
                    
 def runModel(q_table,iterations):
-    print("HELOOOOOOOOOOOOOOOOOOOOOO WORLDLLLLLLLLLLLLLL")
-    env = gym.make("SimpleDriving-v0", apply_api_compatibility=True, renders=False, isDiscrete=True)
+    env = gym.make("SimpleDriving-v0", apply_api_compatibility=True, renders=True, isDiscrete=True)
     env = env.unwrapped
     reachedgoal = 0
     rewards_test = []
@@ -133,7 +132,7 @@ def runModel(q_table,iterations):
                     print('episode: ', episode, ' with redward: ', reward)
                 else:
                     if episode % 50 == 0:
-                        print('episode: ', episode, ' out of ', num_episodes ,' episodes')
+                        print('episode: ', episode, ' out of ', iterations ,' episodes')
                 rewards_test.append(reward)
                 if reward > 40:
                     reachedgoal = reachedgoal + 1
@@ -171,4 +170,4 @@ def testElipson():
 #testElipson()
 q_table = torch.load("q_values2.pth")
 #print(q_table)
-runModel(q_table,100)
+runModel(q_table,2)
