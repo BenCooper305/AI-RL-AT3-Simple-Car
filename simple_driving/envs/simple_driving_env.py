@@ -103,7 +103,18 @@ class SimpleDrivingEnv(gym.Env):
         self.car = Car(self._p)
         self._envStepCounter = 0
 
-        self.obstacle = Obstacle
+        #create obstacle
+        base =[2,2]
+        self.obstacle1 = Obstacle(self._p,base)
+
+        base =[-1,-3]
+        self.obstacle2 = Obstacle(self._p,base)
+
+        base =[10,-11]
+        self.obstacle1 = Obstacle(self._p,base)
+
+        base =[-9,10]
+        self.obstacle2 = Obstacle(self._p,base)
 
         # Set the goal to a random target
         x = (self.np_random.uniform(5, 9) if self.np_random.integers(2) else

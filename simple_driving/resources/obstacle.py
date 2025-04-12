@@ -4,6 +4,7 @@ import os
 
 class Obstacle:
     def __init__(self, client, base):
+        self.client = client
         f_name = os.path.join(os.path.dirname(__file__), 'obstacle.urdf')
         self.obstacle = client.loadURDF(fileName=f_name,
                    basePosition=[base[0], base[1], 0])

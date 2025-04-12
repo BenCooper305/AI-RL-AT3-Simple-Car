@@ -3,7 +3,7 @@
   <link name="box_link">
     <visual>
       <geometry>
-        <box size="1 1 1"/> <!-- width, depth, height in meters -->
+        <box size="0.5 0.5 0.5"/> <!-- width, depth, height in meters -->
       </geometry>
       <material name="blue">
         <color rgba="0 0 1 1"/> <!-- Blue color -->
@@ -12,7 +12,7 @@
 
     <collision>
       <geometry>
-        <box size="1 1 1"/>
+        <box size="0.5 0.5 0.5"/>
       </geometry>
     </collision>
 
