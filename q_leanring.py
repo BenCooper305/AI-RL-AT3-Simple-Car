@@ -21,7 +21,7 @@ START_EPS = 0.9
 MIN_EPS = 0.1
 EPS_DECAY = 0.9998
 
-NUM_BINS = 28
+NUM_BINS = 26
 x_bins = np.linspace(-14, 14, NUM_BINS) 
 y_bins = np.linspace(-14, 14, NUM_BINS) 
 bins = [x_bins, y_bins] 
@@ -87,11 +87,11 @@ def train(q_table,env):
 
 def saveModel(model):
     print('file saved')
-    torch.save(model,"q_values_with_obst.pth")
+    torch.save(model,"q_values2.pth")
 
 def loadQTable(env):
     try:
-        q_table = torch.load("q_values_with_obst.pth")
+        q_table = torch.load("q_values2.pth")
         print("Model loaded successfully!")
         return q_table
     except Exception as e:
@@ -100,7 +100,7 @@ def loadQTable(env):
         return q_table  
                    
 def runModel(q_table,iterations):
-    env = gym.make("SimpleDriving-v0", apply_api_compatibility=True, renders=True, isDiscrete=True)
+    env = gym.make("SimpleDriving-v0", apply_api_compatibility=True, renders=False, isDiscrete=True)
     env = env.unwrapped
     reachedgoal = 0
     rewards_test = []
@@ -141,8 +141,8 @@ def testElipson():
             eps_threshold = max(MIN_EPS, START_EPS * (EPS_DECAY ** i))
             print(eps_threshold)
             
-main()
+#main()
 #testElipson()
-# q_table = torch.load("q_values2.pth")
+q_table = torch.load("q_values2.pth")
 # #print(q_table)
-# runModel(q_table,20)
+runModel(q_table,200)
